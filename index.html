@@ -1,82 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="home">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nivaro Studios</title>
-<meta name="description" content="Nivaro Studios builds small, focused Android apps that work offline and keep your data on your phone.">
+<title>Nivaro Studios — Small, focused Android apps</title>
+<meta name="description" content="Nivaro Studios builds small, focused Android apps that work offline, need no account, and keep your data on your phone.">
+<meta name="theme-color" content="#2f5bd7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131316" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://nivarostudios.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nivaro Studios — Small, focused Android apps">
+<meta property="og:description" content="Apps that work offline, need no account, and keep your data on your phone.">
+<meta property="og:url" content="https://nivarostudios.com/">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232f5bd7'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='white'>N</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232f5bd7'/><stop offset='1' stop-color='%237b3fe4'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M30 72V28h9l22 29V28h9v44h-9L39 43v29z' fill='white'/></svg>">
+<script>
+  /* Set before first paint so a dark-mode visitor never sees a white flash. */
+  document.documentElement.classList.add('js');
+  try {
+    var saved = localStorage.getItem('nivaro-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) { /* private mode: fall back to the OS preference */ }
+</script>
 </head>
 <body>
-<div class="wrap">
 
-<header class="site">
-  <p class="brand"><a href="/">Nivaro Studios</a></p>
-  <p class="tagline">Small, focused Android apps. Built in India.</p>
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="/">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2f5bd7"/><stop offset="1" stop-color="#7b3fe4"/>
+        </linearGradient></defs>
+        <rect width="100" height="100" rx="24" fill="url(#bg)"/>
+        <path d="M30 72V28h9l22 29V28h9v44h-9L39 43v29z" fill="white"/>
+      </svg>
+      Nivaro Studios
+    </a>
+
+    <nav>
+      <a class="navlink" href="#apps">Apps</a>
+      <a class="navlink" href="#how" data-optional>How we build</a>
+      <a class="navlink" href="#contact">Contact</a>
+      <button class="theme-toggle" id="theme" type="button" aria-label="Switch between light and dark">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
 </header>
 
 <main>
-  <h1>We make apps that do one thing well.</h1>
-  <p>
-    Every app we build starts from the same idea: it should be useful the moment you open
-    it, it should work without an account, and whatever you put into it should stay on your
-    phone. No sign-ups, no profiles, no selling your data to anyone.
-  </p>
 
-  <h2>Our apps</h2>
+  <section class="hero">
+    <div class="aurora" aria-hidden="true">
+      <span class="a1"></span><span class="a2"></span><span class="a3"></span>
+    </div>
+    <div class="shell">
+      <p class="eyebrow"><span class="dot"></span> Five apps built · Delhi, India</p>
+      <h1>We make apps that <em class="grad">do one thing well</em>.</h1>
+      <p class="lede">
+        Every app starts from the same idea: it should be useful the moment you open it,
+        it should work without an account, and whatever you put into it should stay on
+        your phone. No sign-ups, no profiles, no selling your data to anyone.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#apps">
+          See the apps
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="mailto:support@nivarostudios.com">Get in touch</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h3>SnapText AI</h3>
-    <p>Pulls text out of videos and turns speech into text. Your videos, transcripts and
-       notes stay in the app's private storage on your phone.</p>
-    <a class="policy-link" href="privacy/snaptext-ai.html">Privacy policy &rarr;</a>
-  </div>
+  <section class="shell">
+    <div class="stats reveal">
+      <div class="stat"><b>5</b><span>apps built</span></div>
+      <div class="stat"><b>0</b><span>trackers, anywhere</span></div>
+      <div class="stat"><b>2</b><span>languages supported</span></div>
+      <div class="stat"><b>100%</b><span>works offline</span></div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h3>Universe Alerts</h3>
-    <p>Alerts you set yourself &mdash; reminders, plus weather, crypto and currency
-       thresholds. Includes notification rules that can ring a real alarm, and a voice
-       assistant you power with your own free API key.</p>
-    <a class="policy-link" href="privacy/universe-alerts.html">Privacy policy &rarr;</a>
-  </div>
+  <section class="section shell" id="apps">
+    <div class="section-head reveal">
+      <p class="kicker">Our apps</p>
+      <h2>Five apps. One idea behind all of them.</h2>
+      <p>Each one solves a single problem properly rather than five problems badly.</p>
+    </div>
 
-  <div class="card">
-    <h3>ArtistLane</h3>
-    <p>Build a listening session from one artist's catalogue on YouTube, and play the MP3s
-       already on your phone with playlists and favourites.</p>
-    <a class="policy-link" href="privacy/artistlane.html">Privacy policy &rarr;</a>
-  </div>
+    <div class="apps">
 
-  <div class="card">
-    <h3>NewsPulse</h3>
-    <p>Headlines from news publishers you choose, grouped by story, with your cities
-       alongside national and world news. Read the full article on the publisher's own page.</p>
-    <a class="policy-link" href="privacy/newspulse.html">Privacy policy &rarr;</a>
-  </div>
+      <article class="app reveal" style="--tint: rgba(47,91,215,0.13); --glyph-bg: linear-gradient(135deg,#2f5bd7,#5b83f0);">
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/>
+          </svg>
+        </div>
+        <h3>SnapText AI</h3>
+        <p>Pulls text out of videos and turns speech into text. Your videos, transcripts and
+           notes stay in the app's private storage on your phone.</p>
+        <ul class="tags"><li>OCR</li><li>Transcription</li><li>On-device storage</li></ul>
+        <a class="policy-link" href="privacy/snaptext-ai.html">Privacy policy <span>&rarr;</span></a>
+      </article>
 
-  <h2>Contact</h2>
-  <p>
-    Questions, bug reports or anything about your data:
-    <a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a>
-  </p>
-  <p>
-    We read every message. If you are writing about a specific app, telling us which one and
-    which phone you are on helps us fix things faster.
-  </p>
+      <article class="app reveal" style="--tint: rgba(232,118,31,0.14); --glyph-bg: linear-gradient(135deg,#e8761f,#f5a94b);">
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
+          </svg>
+        </div>
+        <h3>Universe Alerts</h3>
+        <p>Alerts you set yourself — reminders, plus weather, crypto and currency
+           thresholds. Includes notification rules that can ring a real alarm, and a voice
+           assistant you power with your own free API key.</p>
+        <ul class="tags"><li>Reminders</li><li>Thresholds</li><li>Voice</li></ul>
+        <a class="policy-link" href="privacy/universe-alerts.html">Privacy policy <span>&rarr;</span></a>
+      </article>
+
+      <article class="app reveal" style="--tint: rgba(123,63,228,0.13); --glyph-bg: linear-gradient(135deg,#7b3fe4,#a273f0);">
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
+        <h3>ArtistLane</h3>
+        <p>Build a listening session from one artist's catalogue on YouTube, and play the
+           MP3s already on your phone with playlists and favourites.</p>
+        <ul class="tags"><li>Sessions</li><li>Local MP3s</li><li>Playlists</li></ul>
+        <a class="policy-link" href="privacy/artistlane.html">Privacy policy <span>&rarr;</span></a>
+      </article>
+
+      <article class="app reveal" style="--tint: rgba(15,155,142,0.14); --glyph-bg: linear-gradient(135deg,#0f9b8e,#3fc7b4);">
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9h4"/><path d="M10 6h8M10 10h8M10 14h5"/>
+          </svg>
+        </div>
+        <h3>NewsPulse</h3>
+        <p>Headlines from news publishers you choose, grouped by story, with your cities
+           alongside national and world news. Read the full article on the publisher's own page.</p>
+        <ul class="tags"><li>No permissions</li><li>Story clustering</li><li>Offline reading</li></ul>
+        <a class="policy-link" href="privacy/newspulse.html">Privacy policy <span>&rarr;</span></a>
+      </article>
+
+      <article class="app reveal" style="--tint: rgba(217,64,63,0.13); --glyph-bg: linear-gradient(135deg,#b3122f,#e8a317);">
+        <div class="app-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m12 2 2.2 5.2L20 8.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.8-1.1Z"/>
+          </svg>
+        </div>
+        <h3>Utsav</h3>
+        <p>Daily status cards and invitation cards in Hindi and English, each carrying your
+           own name and photo. Good morning and devotional cards, plus festivals, weddings,
+           birthdays and parties — and you can build one from your own picture.</p>
+        <ul class="tags"><li>हिन्दी &amp; English</li><li>Festival-aware</li><li>Your own photo</li></ul>
+        <a class="policy-link" href="privacy/utsav.html">Privacy policy <span>&rarr;</span></a>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section shell" id="how">
+    <div class="section-head reveal">
+      <p class="kicker">How we build</p>
+      <h2>Three rules we do not bend.</h2>
+      <p>They decide what goes into an app, and more often what stays out of it.</p>
+    </div>
+
+    <div class="principles">
+      <div class="principle reveal">
+        <div class="pico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2 4 6v6c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3>Your data stays put</h3>
+        <p>What you type, record or save lives in the app's private storage on your phone.
+           We have no server holding it and no copy to hand over.</p>
+      </div>
+
+      <div class="principle reveal">
+        <div class="pico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18.4 5.6a9 9 0 1 1-12.8 0"/><path d="M12 2v9"/>
+          </svg>
+        </div>
+        <h3>No account to open</h3>
+        <p>Install it and it works. Where signing in unlocks something extra, it is optional
+           and the rest of the app carries on without it.</p>
+      </div>
+
+      <div class="principle reveal">
+        <div class="pico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/>
+          </svg>
+        </div>
+        <h3>The fewest permissions possible</h3>
+        <p>Most of our apps ask for none at all. Every permission we do not request is one
+           less thing you have to trust us with.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell" id="contact">
+    <div class="contact reveal">
+      <h2>Something broken? Tell us.</h2>
+      <p>
+        Questions, bug reports or anything about your data — we read every message. If you
+        are writing about a specific app, telling us which one and which phone you are on
+        helps us fix things faster.
+      </p>
+      <a class="btn btn-primary" href="mailto:support@nivarostudios.com">
+        support@nivarostudios.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
 </main>
 
-<footer class="site">
-  <p>
-    &copy; 2026 Nivaro Studios &middot;
-    <a href="privacy/snaptext-ai.html">SnapText AI</a> &middot;
-    <a href="privacy/universe-alerts.html">Universe Alerts</a> &middot;
-    <a href="privacy/artistlane.html">ArtistLane</a> &middot;
-    <a href="privacy/newspulse.html">NewsPulse</a>
-  </p>
-  <p>This site uses no cookies, no analytics and no trackers.</p>
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-grid">
+      <div>
+        <h4>Apps</h4>
+        <ul>
+          <li><a href="#apps">SnapText AI</a></li>
+          <li><a href="#apps">Universe Alerts</a></li>
+          <li><a href="#apps">ArtistLane</a></li>
+          <li><a href="#apps">NewsPulse</a></li>
+          <li><a href="#apps">Utsav</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Privacy policies</h4>
+        <ul>
+          <li><a href="privacy/snaptext-ai.html">SnapText AI</a></li>
+          <li><a href="privacy/universe-alerts.html">Universe Alerts</a></li>
+          <li><a href="privacy/artistlane.html">ArtistLane</a></li>
+          <li><a href="privacy/newspulse.html">NewsPulse</a></li>
+          <li><a href="privacy/utsav.html">Utsav</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="terms.html">Terms of use</a></li>
+          <li><a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a></li>
+          <li>Delhi, India</li>
+          <li>Udyam UDYAM-DL-02-0128447</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">
+      &copy; 2026 Nivaro Studios. This site uses no cookies, no analytics and no trackers,
+      and loads nothing from anyone else's servers.
+    </p>
+  </div>
 </footer>
 
-</div>
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme toggle. Reads the OS preference when nothing has been chosen yet. */
+  var btn = document.getElementById('theme');
+  btn.addEventListener('click', function () {
+    var dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('nivaro-theme', next); } catch (e) { /* private mode */ }
+  });
+
+  /* Hairline under the bar only once the page has moved. */
+  var bar = document.getElementById('topbar');
+  var onScroll = function () { bar.classList.toggle('stuck', window.scrollY > 8); };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Reveal on scroll. Anything already on screen shows immediately. */
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      el.style.transitionDelay = (i * 70) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
 </body>
 </html>
