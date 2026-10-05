@@ -4,13 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--
-  No scripts, no third-party resources, so the policy can be this tight.
-  The payment itself happens on Razorpay's own hosted page: nothing about
-  money is handled here, which is the whole point of linking out rather
-  than embedding a checkout widget.
+  One same-origin script and nothing else: no inline JavaScript, no
+  third-party resources, no checkout widget. The payment itself happens on
+  Razorpay's own hosted page, so nothing about money is handled here.
 -->
 <meta http-equiv="Content-Security-Policy"
-      content="default-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
 <title>Buy me a coffee | Nivaro Studios</title>
 <meta name="description" content="Support the independent Android apps built by Nivaro Studios. Pay what you like, or help for free.">
 <link rel="stylesheet" href="style.css">
@@ -47,24 +46,60 @@ behind this, nothing unlocks, and nothing changes if you do not.</p>
 
 <h2>Give something</h2>
 
-<p>Pick any amount on the next page. Most people give between ₹100 and ₹300. Payment
-is handled entirely by <strong>Razorpay</strong> &mdash; UPI, cards, net banking or
-wallets &mdash; on their own secure page.</p>
+<div data-support>
 
-<p class="actions">
-  <!--
-    REPLACE: the Razorpay Payment Page URL goes here, and nowhere else.
-    Until it is set this page must not be linked from the nav.
-  -->
-  <a class="btn btn-primary" href="RAZORPAY_PAYMENT_PAGE_URL"
-     target="_blank" rel="noopener noreferrer">
-    Buy me a coffee &rarr;
-  </a>
-</p>
+  <div data-picker hidden>
+    <div class="cur" role="tablist" aria-label="Currency">
+      <button type="button" class="cur-tab" role="tab" data-currency="USD"
+              aria-selected="true" aria-controls="panel-USD" id="tab-USD">$ USD</button>
+      <button type="button" class="cur-tab" role="tab" data-currency="INR"
+              aria-selected="false" aria-controls="panel-INR" id="tab-INR" tabindex="-1">&#8377; INR</button>
+    </div>
 
-<p class="fineprint">Opens Razorpay in a new tab. Card and UPI details are entered on
-Razorpay&rsquo;s page, never on this site &mdash; nivarostudios.com has no payment
-form, no checkout script and no way to see what you typed.</p>
+    <div class="amounts" data-panel="USD" id="panel-USD" role="tabpanel" aria-labelledby="tab-USD">
+      <a class="amt" data-amount="10" data-panel-currency="USD" target="_blank" rel="noopener noreferrer">$10</a>
+      <a class="amt" data-amount="20" data-panel-currency="USD" target="_blank" rel="noopener noreferrer">$20</a>
+      <a class="amt" data-amount="50" data-panel-currency="USD" target="_blank" rel="noopener noreferrer">$50</a>
+    </div>
+
+    <div class="amounts" data-panel="INR" id="panel-INR" role="tabpanel" aria-labelledby="tab-INR" hidden>
+      <a class="amt" data-amount="500" data-panel-currency="INR" target="_blank" rel="noopener noreferrer">&#8377;500</a>
+      <a class="amt" data-amount="1000" data-panel-currency="INR" target="_blank" rel="noopener noreferrer">&#8377;1,000</a>
+      <a class="amt" data-amount="2000" data-panel-currency="INR" target="_blank" rel="noopener noreferrer">&#8377;2,000</a>
+    </div>
+
+    <div class="custom">
+      <label class="custom-label" for="custom-amount">Or any amount you like</label>
+      <div class="custom-row">
+        <input id="custom-amount" data-custom-input type="number" inputmode="decimal"
+               step="1" min="1" autocomplete="off" placeholder="$ other amount">
+        <a class="btn btn-primary" data-custom-link aria-disabled="true"
+           target="_blank" rel="noopener noreferrer" role="button">Give this amount &rarr;</a>
+      </div>
+      <p class="amt-error" data-error role="alert" hidden></p>
+    </div>
+  </div>
+
+  <p data-unavailable hidden class="callout-warn">
+    Payments are not switched on yet. If you would like to send something in the
+    meantime, email <a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a>
+    and I will send you a link.
+  </p>
+
+  <noscript>
+    <p>Choose your amount on Razorpay&rsquo;s page:</p>
+    <p class="actions">
+      <a class="btn btn-primary" href="RAZORPAY_USD_PAGE_URL" target="_blank" rel="noopener noreferrer">Give in $ USD &rarr;</a>
+      <a class="btn" href="RAZORPAY_INR_PAGE_URL" target="_blank" rel="noopener noreferrer">Give in &#8377; INR &rarr;</a>
+    </p>
+  </noscript>
+
+</div>
+
+<p class="fineprint">Opens Razorpay in a new tab, where you confirm the amount before
+paying. Card and UPI details are entered on Razorpay&rsquo;s page, never on this site
+&mdash; nivarostudios.com has no payment form, no checkout script and no way to see
+what you typed. Payments in USD are converted and settled in rupees.</p>
 
 <h2>Or help for free</h2>
 
@@ -116,5 +151,6 @@ touch any server of mine, because there is no server of mine.</p>
 </footer>
 
 </div>
+<script src="support.js"></script>
 </body>
 </html>
