@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  No scripts, no third-party resources, so the policy can be this tight.
+  The payment itself happens on Razorpay's own hosted page: nothing about
+  money is handled here, which is the whole point of linking out rather
+  than embedding a checkout widget.
+-->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<title>Buy me a coffee | Nivaro Studios</title>
+<meta name="description" content="Support the independent Android apps built by Nivaro Studios. Pay what you like, or help for free.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <p class="brand"><a href="./">Nivaro Studios</a></p>
+</header>
+
+<main>
+<a class="back" href="./">&larr; All apps</a>
+
+<h1>Buy me a coffee</h1>
+<p class="meta">
+  Pay whatever you like &mdash; or help for nothing, which matters just as much.
+</p>
+
+<p>Every app here is free, has no adverts in the sideload builds, collects nothing
+about you and works without an account. That is a deliberate choice, and it means
+none of them earn anything on their own.</p>
+
+<p>If one of them has saved you a wrong platform, a missed last train or a fare you
+did not expect, you are welcome to put something in the tin. There is no paywall
+behind this, nothing unlocks, and nothing changes if you do not.</p>
+
+<div class="callout">
+  <p><strong>Where it actually goes.</strong> A Google Play developer account is a
+  one-off $25. The domain is about $12 a year. Everything else &mdash; the maps, the
+  transit data, the hosting &mdash; is free tier or open data, and the rest is time.
+  Roughly ₹300 covers a month of running costs across all the apps.</p>
+</div>
+
+<h2>Give something</h2>
+
+<p>Pick any amount on the next page. Most people give between ₹100 and ₹300. Payment
+is handled entirely by <strong>Razorpay</strong> &mdash; UPI, cards, net banking or
+wallets &mdash; on their own secure page.</p>
+
+<p class="actions">
+  <!--
+    REPLACE: the Razorpay Payment Page URL goes here, and nowhere else.
+    Until it is set this page must not be linked from the nav.
+  -->
+  <a class="btn btn-primary" href="RAZORPAY_PAYMENT_PAGE_URL"
+     target="_blank" rel="noopener noreferrer">
+    Buy me a coffee &rarr;
+  </a>
+</p>
+
+<p class="fineprint">Opens Razorpay in a new tab. Card and UPI details are entered on
+Razorpay&rsquo;s page, never on this site &mdash; nivarostudios.com has no payment
+form, no checkout script and no way to see what you typed.</p>
+
+<h2>Or help for free</h2>
+
+<p>Honestly, these are worth more than the money, and they cost you nothing:</p>
+
+<ul>
+  <li><strong>Rate the app.</strong> Store ranking is driven by ratings far more than
+      by anything a developer can write in a listing.</li>
+  <li><strong>Report something wrong.</strong> A misnamed station or a fare that does
+      not match the gate is the most valuable message I can get &mdash;
+      <a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a>.</li>
+  <li><strong>Tell one person</strong> who takes that metro.</li>
+</ul>
+
+<h2>Being straight with you</h2>
+
+<ul>
+  <li>This is <strong>support for an independent developer</strong>, not a charity
+      donation. Nivaro Studios is a sole proprietorship in Delhi, India. It is not a
+      registered non-profit, your payment is not tax-deductible, and I am not
+      collecting on anyone else&rsquo;s behalf.</li>
+  <li><strong>Nothing is unlocked by paying.</strong> There is no supporter tier, no
+      removed advert, no hidden feature. Every app is the same app for everyone.</li>
+  <li><strong>There are no refunds to chase</strong> because there is nothing owed
+      &mdash; but if you paid by mistake, write to me and I will send it straight
+      back, no questions.</li>
+  <li><strong>Please do not give money you need.</strong> Rating the app is genuinely
+      more useful than ₹100 you would rather keep.</li>
+</ul>
+
+<h2>Your privacy</h2>
+
+<p>This page sets no cookies, loads no scripts and counts no visitors. When you tap
+through, Razorpay handles the payment under
+<a href="https://razorpay.com/privacy/" target="_blank" rel="noopener noreferrer">their
+own privacy policy</a> and tells me only the amount and the name you choose to give.
+I never see your card number, your UPI PIN, or your bank details &mdash; those never
+touch any server of mine, because there is no server of mine.</p>
+
+<p class="meta" style="margin-top:40px">
+  Questions: <a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a><br>
+  <a href="terms.html">Terms of Use</a>
+</p>
+
+</main>
+
+<footer class="site">
+  <p>&copy; 2026 Nivaro Studios &middot; <a href="./">nivarostudios.com</a></p>
+</footer>
+
+</div>
+</body>
+</html>

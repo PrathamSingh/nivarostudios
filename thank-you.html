@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<!--
+  Not indexed: this page is a destination after a payment, not something
+  that should turn up in a search for the apps.
+-->
+<meta name="robots" content="noindex">
+<title>Thank you | Nivaro Studios</title>
+<meta name="description" content="Thank you for supporting Nivaro Studios.">
+<link rel="stylesheet" href="style.css">
+<style>
+  /*
+    Scoped to this page, so it stays out of the shared stylesheet that
+    every other page loads.
+  */
+  .cup-wrap { display: flex; justify-content: center; margin: 8px 0 28px; }
+  .cup { width: 148px; height: 148px; }
+  .steam { opacity: 0; transform-origin: center bottom; }
+  .steam-1 { animation: rise 3.4s ease-in-out 0.0s infinite; }
+  .steam-2 { animation: rise 3.4s ease-in-out 0.9s infinite; }
+  .steam-3 { animation: rise 3.4s ease-in-out 1.8s infinite; }
+
+  @keyframes rise {
+    0%   { opacity: 0;    transform: translateY(6px)   scaleX(1);    }
+    25%  { opacity: 0.55; transform: translateY(-2px)  scaleX(1.05); }
+    70%  { opacity: 0.25; transform: translateY(-12px) scaleX(0.9);  }
+    100% { opacity: 0;    transform: translateY(-20px) scaleX(0.8);  }
+  }
+
+  /*
+    Someone who has asked the OS for less motion gets the steam as a still
+    wisp rather than nothing at all — the drawing should not look broken,
+    it should just hold still.
+  */
+  @media (prefers-reduced-motion: reduce) {
+    .steam { animation: none; opacity: 0.35; }
+  }
+
+  .thanks-lede { font-size: 1.12rem; line-height: 1.65; }
+  .next { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <p class="brand"><a href="./">Nivaro Studios</a></p>
+</header>
+
+<main>
+
+<div class="cup-wrap">
+  <svg class="cup" viewBox="0 0 120 120" role="img"
+       aria-label="A cup of coffee with steam rising from it">
+    <!--
+      The group must not carry .steam itself: that class starts at opacity 0
+      and is brought back by the animation, which only the three wisps have.
+      Putting it on the wrapper hid the lot.
+    -->
+    <g fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round">
+      <path class="steam steam-1" d="M46 42c-5-6 5-10 0-16" />
+      <path class="steam steam-2" d="M60 38c-5-7 5-11 0-18" />
+      <path class="steam steam-3" d="M74 42c-5-6 5-10 0-16" />
+    </g>
+    <path d="M26 56h62v22a24 24 0 0 1-24 24H50a24 24 0 0 1-24-24V56Z"
+          fill="var(--accent)" />
+    <path d="M88 62h7a13 13 0 0 1 0 26h-7" fill="none"
+          stroke="var(--accent)" stroke-width="7" stroke-linecap="round" />
+    <rect x="18" y="106" width="78" height="7" rx="3.5"
+          fill="var(--accent)" opacity="0.28" />
+  </svg>
+</div>
+
+<h1>Thank you, genuinely</h1>
+
+<p class="thanks-lede">That is a real, concrete thing you just did. Somebody in Delhi
+is going to keep a metro app free, with no adverts and no tracking, partly because
+you decided it was worth something.</p>
+
+<p>These apps get built late at night around a day job. Nobody commissioned them and
+nobody is paying for them, which means the only signal that any of it is worth
+continuing is somebody choosing, unprompted, to chip in. You just sent that signal.
+It lands harder than you would think.</p>
+
+<div class="callout">
+  <p><strong>What happens next.</strong> Razorpay will email you a receipt. Nothing is
+  unlocked and nothing changes in the apps &mdash; you have not bought anything, you
+  have just made the next one easier to finish.</p>
+</div>
+
+<p>If you ever hit a station named wrongly, a fare that does not match the gate, or
+anything that simply looks broken, I would like to hear about it more than I would
+like another coffee:
+<a href="mailto:support@nivarostudios.com">support@nivarostudios.com</a>.</p>
+
+<p class="next">
+  <a class="btn btn-primary" href="./">See the apps &rarr;</a>
+</p>
+
+<p class="fineprint" style="margin-top:28px">Paid by mistake, or changed your mind?
+Write to me and I will send it back, no questions asked.</p>
+
+</main>
+
+<footer class="site">
+  <p>&copy; 2026 Nivaro Studios &middot; <a href="./">nivarostudios.com</a></p>
+</footer>
+
+</div>
+</body>
+</html>

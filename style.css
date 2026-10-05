@@ -676,3 +676,22 @@ html.js .reveal.in {
   .theme-toggle { width: 34px; height: 34px; }
   .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
 }
+
+/* ----------------------------------------------------------------------------
+   Support page
+   Two small utilities the support and thank-you pages need. Kept here rather
+   than inline so they pick up the same tokens, and the same dark mode, as
+   everything else.
+---------------------------------------------------------------------------- */
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 10px; }
+
+.fineprint {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* The payment button is the one call to action on the page, so it is allowed
+   to be larger than the buttons on the home page. */
+.actions .btn { padding: 14px 22px; font-size: 1rem; }
