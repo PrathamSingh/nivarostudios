@@ -811,3 +811,54 @@ html.js .reveal.in {
   background: var(--surface);
   color: var(--muted);
 }
+
+/* The one call to action in the topbar ------------------------------------- */
+
+/*
+ * Deliberately not a .navlink. Apps, How we build and Contact are navigation;
+ * this asks for something, so it has to read as a button or it disappears
+ * into the row. Kept small and outlined rather than filled — the hero's
+ * "See the apps" is still the primary action on the page.
+ */
+.coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 13px;
+  margin-left: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.coffee svg { width: 17px; height: 17px; color: #b4762f; flex: none; }
+
+.coffee:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.coffee:active { transform: translateY(0); }
+.coffee:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+
+/* Dark mode wants a warmer cup than the light one. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .coffee svg { color: #e0a86a; }
+}
+:root[data-theme="dark"] .coffee svg { color: #e0a86a; }
+
+/*
+ * On a phone the label is the first thing to go, not the button. Someone on
+ * a narrow screen still gets the cup, which is the recognisable part.
+ */
+@media (max-width: 560px) {
+  .coffee span { display: none; }
+  .coffee { padding: 0 10px; }
+}
