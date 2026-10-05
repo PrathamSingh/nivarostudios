@@ -20,22 +20,24 @@
    * One Razorpay Payment Page per currency — a Payment Page is fixed to a
    * single currency, so these cannot be the same link.
    *
-   * REPLACE both. Until a URL is set its currency is hidden rather than
-   * shown as a broken button.
+   * Use the pages.razorpay.com form, never the rzp.io short link: the short
+   * link discards the query string when it redirects, so an amount sent
+   * through it silently arrives as nothing.
+   *
+   * USD needs Razorpay's International Payments activation and a second
+   * Payment Page. Until that URL is set, USD is hidden rather than offered
+   * as a button that cannot work.
    */
   var PAGES = {
     USD: 'RAZORPAY_USD_PAGE_URL',
-    INR: 'RAZORPAY_INR_PAGE_URL'
+    INR: 'https://pages.razorpay.com/nivarostudios'
   };
 
   /**
-   * Whether Razorpay's `amount` parameter wants whole units or the smallest
-   * unit. Their Payment Pages documentation shows `?amount=199` producing a
-   * ₹199 page, so whole units — but verify with one real ₹1 payment before
-   * announcing the page, and if it lands at ₹0.01 change this to 100.
-   *
-   * Getting it wrong cannot silently overcharge anybody: Razorpay shows the
-   * amount on their own page and the donor has to confirm it there.
+   * Whole units, not paise. Verified against the live page on 6 Oct 2026:
+   * `?amount=500` renders "₹500" in the amount field and "Pay ₹500.00" on
+   * the button. If a future Razorpay change breaks that, this is the only
+   * number to touch.
    */
   var UNIT_MULTIPLIER = 1;
 
@@ -58,6 +60,7 @@
     input: root.querySelector('[data-custom-input]'),
     custom: root.querySelector('[data-custom-link]'),
     error: root.querySelector('[data-error]'),
+    usdNote: root.querySelector('[data-usd-note]'),
     picker: root.querySelector('[data-picker]'),
     unavailable: root.querySelector('[data-unavailable]')
   };
@@ -198,6 +201,11 @@
     return;
   }
   if (els.picker) els.picker.hidden = false;
+  // A currency switcher with one currency on it is furniture, not a choice.
+  var tablist = root.querySelector('.cur');
+  if (tablist) tablist.hidden = available.length < 2;
+  // The note about USD settling in rupees is only true if USD is on offer.
+  if (els.usdNote) els.usdNote.hidden = available.indexOf('USD') === -1;
   // USD by default where it is available, because most readers are not in India.
   show(available.indexOf('USD') !== -1 ? 'USD' : available[0]);
 }());
