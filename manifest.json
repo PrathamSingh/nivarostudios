@@ -1,0 +1,15 @@
+{
+  "name": "Nivaro Studios",
+  "short_name": "Nivaro",
+  "description": "Small, focused Android apps that work offline, need no account, and keep your data on your phone.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#131316",
+  "theme_color": "#2f5bd7",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/favicon.png", "sizes": "48x48", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
