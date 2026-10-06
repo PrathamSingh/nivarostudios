@@ -1,0 +1,7 @@
+{
+  "name": "nivarostudios-site",
+  "private": true,
+  "scripts": {
+    "images": "node scripts/make-brand-images.mjs"
+  }
+}

@@ -7,13 +7,13 @@
 <meta name="description" content="Nivaro Studios builds small, focused Android apps that work offline, need no account, and keep your data on your phone.">
 <meta name="theme-color" content="#2f5bd7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#131316" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://nivarostudios.com/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nivaro Studios — Small, focused Android apps">
-<meta property="og:description" content="Apps that work offline, need no account, and keep your data on your phone.">
-<meta property="og:url" content="https://nivarostudios.com/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232f5bd7'/><stop offset='1' stop-color='%237b3fe4'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M30 72V28h9l22 29V28h9v44h-9L39 43v29z' fill='white'/></svg>">
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232f5bd7'/><stop offset='1' stop-color='%237b3fe4'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M30 72V28h9l22 29V28h9v44h-9L39 43v29z' fill='white'/></svg>">
 <script>
   /* Set before first paint so a dark-mode visitor never sees a white flash. */
   document.documentElement.classList.add('js');
@@ -21,6 +21,182 @@
     var saved = localStorage.getItem('nivaro-theme');
     if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
   } catch (e) { /* private mode: fall back to the OS preference */ }
+</script>
+
+<link rel="canonical" href="https://nivarostudios.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivaro Studios">
+<meta property="og:url" content="https://nivarostudios.com/">
+<meta property="og:title" content="Nivaro Studios — Small, focused Android apps">
+<meta property="og:description" content="Nivaro Studios builds small, focused Android apps that work offline, need no account, and keep your data on your phone.">
+<meta property="og:image" content="https://nivarostudios.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nivaro Studios">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nivaro Studios — Small, focused Android apps">
+<meta name="twitter:description" content="Nivaro Studios builds small, focused Android apps that work offline, need no account, and keep your data on your phone.">
+<meta name="twitter:image" content="https://nivarostudios.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nivaro Studios",
+  "url": "https://nivarostudios.com",
+  "logo": "https://nivarostudios.com/apple-touch-icon.png",
+  "image": "https://nivarostudios.com/og-image.png",
+  "email": "support@nivarostudios.com",
+  "description": "Nivaro Studios builds small, focused Android apps that work offline, need no account, and keep your data on your phone.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Delhi",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SnapText AI",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Universe Alerts",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ArtistLane",
+  "applicationCategory": "MusicApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NewsPulse",
+  "applicationCategory": "NewsApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Utsav",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Singapore MRT Map & Routes",
+  "applicationCategory": "TravelApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "New York Subway Map & Routes",
+  "applicationCategory": "TravelApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Dubai Metro Map & Routes",
+  "applicationCategory": "TravelApplication",
+  "operatingSystem": "Android",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nivaro Studios"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
 </script>
 </head>
 <body>
@@ -106,7 +282,7 @@
 
     <div class="apps">
 
-      <article class="app reveal" style="--tint: rgba(47,91,215,0.13); --glyph-bg: linear-gradient(135deg,#2f5bd7,#5b83f0);">
+      <article class="app reveal tint-snaptext">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/>
@@ -119,7 +295,7 @@
         <a class="policy-link" href="privacy/snaptext-ai.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(232,118,31,0.14); --glyph-bg: linear-gradient(135deg,#e8761f,#f5a94b);">
+      <article class="app reveal tint-universe">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
@@ -133,7 +309,7 @@
         <a class="policy-link" href="privacy/universe-alerts.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(123,63,228,0.13); --glyph-bg: linear-gradient(135deg,#7b3fe4,#a273f0);">
+      <article class="app reveal tint-artistlane">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
@@ -146,7 +322,7 @@
         <a class="policy-link" href="privacy/artistlane.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(15,155,142,0.14); --glyph-bg: linear-gradient(135deg,#0f9b8e,#3fc7b4);">
+      <article class="app reveal tint-newspulse">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9h4"/><path d="M10 6h8M10 10h8M10 14h5"/>
@@ -159,7 +335,7 @@
         <a class="policy-link" href="privacy/newspulse.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(217,64,63,0.13); --glyph-bg: linear-gradient(135deg,#b3122f,#e8a317);">
+      <article class="app reveal tint-utsav">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m12 2 2.2 5.2L20 8.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.8-1.1Z"/>
@@ -173,7 +349,7 @@
         <a class="policy-link" href="privacy/utsav.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(0,110,90,0.13); --glyph-bg: linear-gradient(135deg,#0f7b6c,#1f9bd1);">
+      <article class="app reveal tint-singapore">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="3" width="14" height="13" rx="3"/>
@@ -191,7 +367,7 @@
         <a class="policy-link" href="privacy/sg-metro.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(0,57,166,0.13); --glyph-bg: linear-gradient(135deg,#0039A6,#EE352E);">
+      <article class="app reveal tint-new">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="3" width="14" height="13" rx="3"/><path d="M5 9h14"/>
@@ -207,7 +383,7 @@
         <a class="policy-link" href="privacy/nyc-subway.html">Privacy policy <span>&rarr;</span></a>
       </article>
 
-      <article class="app reveal" style="--tint: rgba(228,0,43,0.13); --glyph-bg: linear-gradient(135deg,#E4002B,#00A551);">
+      <article class="app reveal tint-dubai">
         <div class="app-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="3" width="14" height="13" rx="3"/><path d="M5 9h14"/>
@@ -364,8 +540,13 @@
     entries.forEach(function (entry, i) {
       if (!entry.isIntersecting) return;
       var el = entry.target;
-      el.style.transitionDelay = (i * 70) + 'ms';
-      el.classList.add('in');
+      /*
+       * Stagger via a class, not el.style. Writing to .style is an inline
+       * style, which the page's own content security policy blocks — and it
+       * blocks it silently, so the reveal simply stopped being staggered
+       * with nothing in the console a casual look would catch.
+       */
+      el.classList.add('in', 'd' + Math.min(i, 5));
       io.unobserve(el);
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });

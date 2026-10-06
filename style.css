@@ -401,11 +401,23 @@ footer.site a { color: var(--muted); }
 }
 
 .grad {
-  background: linear-gradient(100deg, var(--accent), var(--accent-2) 60%, #20b8a6);
+  background: linear-gradient(100deg, var(--accent), var(--accent-2) 45%, #20b8a6 70%, var(--accent) 100%);
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   font-style: normal;
+  animation: grad-drift 18s ease-in-out infinite alternate;
+}
+
+/*
+ * Slow enough that it is felt rather than watched — the aurora behind it
+ * runs at 22-30s, and a faster headline would fight it.
+ */
+@keyframes grad-drift { to { background-position: 100% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .grad { animation: none; }
 }
 
 .lede {
@@ -825,8 +837,9 @@ html.js .reveal.in {
   align-items: center;
   gap: 7px;
   height: 38px;
-  padding: 0 13px;
-  margin-left: 4px;
+  padding: 0 14px;
+  /* Equal on both sides, so it sits evenly between Contact and the toggle. */
+  margin: 0 14px;
   border: 1px solid var(--border-strong);
   border-radius: 10px;
   background: var(--surface);
@@ -846,6 +859,41 @@ html.js .reveal.in {
   box-shadow: var(--shadow-sm);
 }
 .coffee:active { transform: translateY(0); }
+
+/*
+ * Steam, on hover only. Drawn with a pseudo-element rather than another SVG
+ * so it costs nothing until the pointer arrives, and it is never shown to a
+ * reader who has asked for less motion.
+ */
+.coffee::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 9px;
+  border-radius: 2px;
+  background: currentColor;
+  color: #b4762f;
+  opacity: 0;
+  transform: translate(13px, -14px);
+  pointer-events: none;
+}
+
+.coffee { position: relative; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .coffee:hover::before { animation: wisp 1.5s ease-out infinite; }
+}
+
+@keyframes wisp {
+  0%   { opacity: 0;    transform: translate(13px, -11px) scaleY(0.6); }
+  30%  { opacity: 0.55; transform: translate(12px, -15px) scaleY(1);   }
+  100% { opacity: 0;    transform: translate(14px, -21px) scaleY(0.7); }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .coffee::before { color: #e0a86a; }
+}
+:root[data-theme="dark"] .coffee::before { color: #e0a86a; }
 .coffee:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 
 /* Dark mode wants a warmer cup than the light one. */
@@ -861,4 +909,35 @@ html.js .reveal.in {
 @media (max-width: 560px) {
   .coffee span { display: none; }
   .coffee { padding: 0 10px; }
+}
+
+/* Card tints and spacing utilities --------------------------------------------
+   These were inline style attributes until the site adopted a content security
+   policy. `style-src 'self'` blocks inline styles, which silently flattened
+   every app card to grey — so the values live here, where the policy can stay
+   strict instead of being loosened to 'unsafe-inline' to accommodate them. */
+
+.tint-snaptext { --tint: rgba(47,91,215,0.13); --glyph-bg: linear-gradient(135deg,#2f5bd7,#5b83f0); }
+.tint-universe { --tint: rgba(232,118,31,0.14); --glyph-bg: linear-gradient(135deg,#e8761f,#f5a94b); }
+.tint-artistlane { --tint: rgba(123,63,228,0.13); --glyph-bg: linear-gradient(135deg,#7b3fe4,#a273f0); }
+.tint-newspulse { --tint: rgba(15,155,142,0.14); --glyph-bg: linear-gradient(135deg,#0f9b8e,#3fc7b4); }
+.tint-utsav { --tint: rgba(217,64,63,0.13); --glyph-bg: linear-gradient(135deg,#b3122f,#e8a317); }
+.tint-singapore { --tint: rgba(0,110,90,0.13); --glyph-bg: linear-gradient(135deg,#0f7b6c,#1f9bd1); }
+.tint-new { --tint: rgba(0,57,166,0.13); --glyph-bg: linear-gradient(135deg,#0039A6,#EE352E); }
+.tint-dubai { --tint: rgba(228,0,43,0.13); --glyph-bg: linear-gradient(135deg,#E4002B,#00A551); }
+
+.mt-lg { margin-top: 28px; }
+.mt-xl { margin-top: 40px; }
+
+/* Reveal stagger. Six steps is enough — past the sixth element in a batch
+   the eye stops reading it as a sequence anyway. */
+.reveal.d0 { transition-delay: 0ms; }
+.reveal.d1 { transition-delay: 70ms; }
+.reveal.d2 { transition-delay: 140ms; }
+.reveal.d3 { transition-delay: 210ms; }
+.reveal.d4 { transition-delay: 280ms; }
+.reveal.d5 { transition-delay: 350ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal[class*="d"] { transition-delay: 0ms; }
 }
