@@ -41,6 +41,22 @@
    */
   var UNIT_MULTIPLIER = 1;
 
+  /**
+   * Whether Razorpay will accept a card issued outside India.
+   *
+   * It will not: the activation request was rejected on 6 Oct 2026 — "your
+   * given details couldn't be verified by our banking partners" — and
+   * cannot be resubmitted until 4 Jan 2027. The usual cause is an account
+   * with no trading history, so a few months of rupee payments should fix
+   * it rather than any change to the application.
+   *
+   * This matters to a reader, not just to the config: without it a donor in
+   * London taps a button, their card is declined with no reason given, and
+   * they conclude the site is broken. Saying so up front costs one line and
+   * is the difference between "not available" and "doesn't work".
+   */
+  var INTERNATIONAL_CARDS = false;
+
   var LIMITS = {
     USD: { min: 1, max: 5000, symbol: '$', code: 'USD' },
     INR: { min: 50, max: 200000, symbol: '₹', code: 'INR' }
@@ -61,6 +77,7 @@
     custom: root.querySelector('[data-custom-link]'),
     error: root.querySelector('[data-error]'),
     usdNote: root.querySelector('[data-usd-note]'),
+    indiaOnly: root.querySelector('[data-india-only]'),
     picker: root.querySelector('[data-picker]'),
     unavailable: root.querySelector('[data-unavailable]')
   };
@@ -206,6 +223,7 @@
   if (tablist) tablist.hidden = available.length < 2;
   // The note about USD settling in rupees is only true if USD is on offer.
   if (els.usdNote) els.usdNote.hidden = available.indexOf('USD') === -1;
+  if (els.indiaOnly) els.indiaOnly.hidden = INTERNATIONAL_CARDS;
   // USD by default where it is available, because most readers are not in India.
   show(available.indexOf('USD') !== -1 ? 'USD' : available[0]);
 }());
