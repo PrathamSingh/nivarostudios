@@ -561,14 +561,31 @@ footer.site a { color: var(--muted); }
 
 .app p { color: var(--muted); font-size: 0.95rem; margin: 0 0 16px; }
 
-.app .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.app .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 18px; padding: 0; list-style: none; }
 
+/*
+ * Pills are sized by the box, not by the script inside them.
+ *
+ * With vertical padding and an inherited line-height, a pill grows to fit
+ * whatever the font needs for that writing system — so "हिन्दी & English"
+ * stood visibly taller than "Festival-aware" beside it, and a row of tags
+ * came out ragged. Devanagari needs room above and below for matras that
+ * Latin never uses, and Chinese sits on a different em box again.
+ *
+ * Fixing the height and centring the text means a row stays level whatever
+ * is in it, and the text still grows with the user's font-size setting
+ * because the minimum is in em rather than px.
+ */
 .app .tags li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2em;
   font-size: 0.76rem;
+  line-height: 1;
   color: var(--muted);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 3px 10px;
+  padding: 0 10px;
   margin: 0;
   background: color-mix(in srgb, var(--bg) 70%, transparent);
 }
@@ -940,4 +957,115 @@ html.js .reveal.in {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal[class*="d"] { transition-delay: 0ms; }
+}
+
+/* ---------------------------------------------------------------------------
+   Why these exist, and the checkable claims.
+
+   Both are plain grids rather than anything clever: the point of each is the
+   sentence inside it, and a card that animates is a card that delays reading.
+   --------------------------------------------------------------------------- */
+
+.probs,
+.checks {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.prob,
+.check {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-2);
+}
+
+.prob h3,
+.check b {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* A rule in the brand gradient, so the section reads as part of the page
+   without each card needing its own tint. */
+.prob {
+  border-top: 3px solid transparent;
+  background-image: linear-gradient(var(--surface-2), var(--surface-2)),
+    linear-gradient(90deg, var(--accent), var(--accent-2));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.prob p,
+.check p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.62;
+}
+
+.check {
+  padding-left: 46px;
+  position: relative;
+}
+
+/* A tick drawn in CSS: one less request, and it cannot fail to load. */
+.check::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  width: 7px;
+  height: 13px;
+  border: solid var(--accent);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+/* ---------------------------------------------------------------------------
+   The legal bar.
+
+   A footer that names the company, the registration behind it and the terms
+   it operates under is the part of a site that says somebody is accountable
+   for what is on it. It was the one thing missing here.
+   --------------------------------------------------------------------------- */
+
+.legal {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 10px;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.legal-links a {
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.legal-links a:hover,
+.legal-links a:focus-visible {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.legal .fine strong { color: var(--text); }
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82em;
+  letter-spacing: 0.02em;
 }
