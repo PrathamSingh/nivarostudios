@@ -544,7 +544,10 @@ footer.site a { color: var(--muted); }
   width: 46px;
   height: 46px;
   border-radius: 13px;
-  background: var(--glyph-bg);
+  /* Falls back to the brand gradient: a card whose tint class is missing
+     used to render a white glyph on nothing, which is invisible on a white
+     card rather than merely wrong. */
+  background: var(--glyph-bg, linear-gradient(135deg, var(--accent), var(--accent-2)));
   color: #fff;
   margin-bottom: 16px;
   box-shadow: var(--shadow-sm);
@@ -942,6 +945,8 @@ html.js .reveal.in {
 .tint-singapore { --tint: rgba(0,110,90,0.13); --glyph-bg: linear-gradient(135deg,#0f7b6c,#1f9bd1); }
 .tint-new { --tint: rgba(0,57,166,0.13); --glyph-bg: linear-gradient(135deg,#0039A6,#EE352E); }
 .tint-dubai { --tint: rgba(228,0,43,0.13); --glyph-bg: linear-gradient(135deg,#E4002B,#00A551); }
+.tint-dayvault { --tint: rgba(108,92,231,0.13); --glyph-bg: linear-gradient(135deg,#6C5CE7,#FF6B9D); }
+.tint-citizenready { --tint: rgba(27,110,60,0.13); --glyph-bg: linear-gradient(135deg,#1B6E3C,#2ECC71); }
 
 .mt-lg { margin-top: 28px; }
 .mt-xl { margin-top: 40px; }
