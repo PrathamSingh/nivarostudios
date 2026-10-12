@@ -493,7 +493,11 @@ footer.site a { color: var(--muted); }
 
 /* --- sections --- */
 
-.section { padding: clamp(56px, 9vw, 96px) 0 0; }
+/* padding-top, not the `padding` shorthand: .section and .shell have equal
+   specificity, so a shorthand here wins on source order and silently zeroes
+   .shell's own `0 var(--page-pad)`. Every section then runs edge to edge on
+   any screen narrower than the 1080px cap, which is every phone. */
+.section { padding-top: clamp(56px, 9vw, 96px); }
 
 .section-head { max-width: 58ch; margin: 0 0 32px; }
 
@@ -539,7 +543,7 @@ footer.site a { color: var(--muted); }
 
 .apps {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
   align-items: stretch;
 }
