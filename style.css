@@ -505,11 +505,64 @@ footer.site a { color: var(--muted); }
 
 /* --- app cards --- */
 
+/* ---------------------------------------------------------------------------
+   The apps, as a bento grid.
+
+   Twelve columns rather than six, because the content divides into three
+   groups of different sizes and twelve is the smallest track that holds all
+   three without an orphan: two leads at six, four transit apps at three,
+   and the rest at four.
+
+   An auto-fit grid cannot express that — every cell is identical and the
+   reader is left to work out what matters. A grid that is merely uneven,
+   with no hierarchy behind it, is worse than a plain one.
+   --------------------------------------------------------------------------- */
+
 .apps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
   gap: 18px;
 }
+
+/* The base tile: a third of the row. */
+.apps > .app { grid-column: span 4; }
+
+/* The two the studio leads with: half a row each. */
+.apps > .app.is-lead { grid-column: span 6; }
+
+/* One idea in four cities, so all four sit on one row. */
+.apps > .app.is-transit { grid-column: span 3; }
+
+/* The tail, widened so the last row fills rather than trailing a gap. */
+.apps > .app.is-wide { grid-column: span 6; }
+
+@media (min-width: 1041px) {
+  /* A lead tile has the room, and its description is the one people
+     actually read, so it gets the larger type rather than the same. */
+  .app.is-lead h3 { font-size: 1.32rem; }
+  .app.is-lead p { font-size: 1rem; }
+}
+
+/* Tablet: the transit set stays a set, two across; everything else full. */
+@media (max-width: 1040px) {
+  .apps { grid-template-columns: repeat(2, 1fr); }
+  .apps > .app,
+  .apps > .app.is-lead,
+  .apps > .app.is-wide { grid-column: span 2; }
+  .apps > .app.is-transit { grid-column: span 1; }
+}
+
+/* Phone: spanning means nothing when everything is full width. */
+@media (max-width: 680px) {
+  .apps { grid-template-columns: 1fr; }
+  .apps > .app,
+  .apps > .app.is-lead,
+  .apps > .app.is-wide,
+  .apps > .app.is-transit { grid-column: span 1; }
+}
+
+.app.is-transit { --tint: rgba(47, 91, 215, 0.10); }
+.tint-metromaps { --tint: rgba(47,91,215,0.12); --glyph-bg: linear-gradient(135deg,#0E1A2B,#2F6FED); }
 
 .app {
   position: relative;
