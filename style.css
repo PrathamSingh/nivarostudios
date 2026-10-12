@@ -245,6 +245,9 @@ footer.site a { color: var(--muted); }
 }
 
 .mark {
+  /* 30px before: the logo is the easiest thing to aim at and was the
+     smallest target on the page. */
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -265,7 +268,18 @@ footer.site a { color: var(--muted); }
   gap: 4px;
 }
 
+/*
+ * Touch targets.
+ *
+ * A link can look fine and still be hard to hit. Apple asks for 44pt and
+ * Android for 48dp, and these were 38-40px tall — fine with a mouse, a
+ * near-miss with a thumb. The visual size is unchanged; the target is the
+ * padding, so nothing about the design moves.
+ */
 .navlink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.94rem;
@@ -279,8 +293,8 @@ footer.site a { color: var(--muted); }
 .theme-toggle {
   display: inline-grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -506,62 +520,30 @@ footer.site a { color: var(--muted); }
 /* --- app cards --- */
 
 /* ---------------------------------------------------------------------------
-   The apps, as a bento grid.
+   The apps.
 
-   Twelve columns rather than six, because the content divides into three
-   groups of different sizes and twelve is the smallest track that holds all
-   three without an orphan: two leads at six, four transit apps at three,
-   and the rest at four.
+   One size, in a grid that fills. A bento layout was tried here and did not
+   work: every description is about the same length, so varying the widths
+   only reflowed the same words into different shapes and the section read
+   as uneven rather than deliberate. Unequal tiles need unequal content.
 
-   An auto-fit grid cannot express that — every cell is identical and the
-   reader is left to work out what matters. A grid that is merely uneven,
-   with no hierarchy behind it, is worse than a plain one.
+   `auto-fill` rather than `auto-fit`, so the last row keeps the column
+   width instead of stretching two cards across the whole page — that
+   stretch was the other thing making the grid look accidental.
+
+   Every card is the same height within its row because grid items stretch
+   by default, and the privacy link is pushed to the bottom with
+   `margin-top: auto`, so the links line up across the row whatever the
+   description does above them.
    --------------------------------------------------------------------------- */
 
 .apps {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
-/* The base tile: a third of the row. */
-.apps > .app { grid-column: span 4; }
-
-/* The two the studio leads with: half a row each. */
-.apps > .app.is-lead { grid-column: span 6; }
-
-/* One idea in four cities, so all four sit on one row. */
-.apps > .app.is-transit { grid-column: span 3; }
-
-/* The tail, widened so the last row fills rather than trailing a gap. */
-.apps > .app.is-wide { grid-column: span 6; }
-
-@media (min-width: 1041px) {
-  /* A lead tile has the room, and its description is the one people
-     actually read, so it gets the larger type rather than the same. */
-  .app.is-lead h3 { font-size: 1.32rem; }
-  .app.is-lead p { font-size: 1rem; }
-}
-
-/* Tablet: the transit set stays a set, two across; everything else full. */
-@media (max-width: 1040px) {
-  .apps { grid-template-columns: repeat(2, 1fr); }
-  .apps > .app,
-  .apps > .app.is-lead,
-  .apps > .app.is-wide { grid-column: span 2; }
-  .apps > .app.is-transit { grid-column: span 1; }
-}
-
-/* Phone: spanning means nothing when everything is full width. */
-@media (max-width: 680px) {
-  .apps { grid-template-columns: 1fr; }
-  .apps > .app,
-  .apps > .app.is-lead,
-  .apps > .app.is-wide,
-  .apps > .app.is-transit { grid-column: span 1; }
-}
-
-.app.is-transit { --tint: rgba(47, 91, 215, 0.10); }
 .tint-metromaps { --tint: rgba(47,91,215,0.12); --glyph-bg: linear-gradient(135deg,#0E1A2B,#2F6FED); }
 
 .app {
@@ -570,8 +552,8 @@ footer.site a { color: var(--muted); }
   flex-direction: column;
   background: var(--surface-2);
   border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 26px 24px 22px;
+  border-radius: 16px;
+  padding: 20px 18px 14px;
   overflow: hidden;
   isolation: isolate;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
@@ -594,19 +576,19 @@ footer.site a { color: var(--muted); }
 .app-icon {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
   /* Falls back to the brand gradient: a card whose tint class is missing
      used to render a white glyph on nothing, which is invisible on a white
      card rather than merely wrong. */
   background: var(--glyph-bg, linear-gradient(135deg, var(--accent), var(--accent-2)));
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow-sm);
 }
 
-.app-icon svg { width: 23px; height: 23px; }
+.app-icon svg { width: 20px; height: 20px; }
 
 .app h3 {
   margin: 0 0 6px;
@@ -615,9 +597,9 @@ footer.site a { color: var(--muted); }
   letter-spacing: -0.015em;
 }
 
-.app p { color: var(--muted); font-size: 0.95rem; margin: 0 0 16px; }
+.app p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; margin: 0 0 12px; }
 
-.app .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 18px; padding: 0; list-style: none; }
+.app .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; padding: 0; list-style: none; }
 
 /*
  * Pills are sized by the box, not by the script inside them.
@@ -647,14 +629,19 @@ footer.site a { color: var(--muted); }
 }
 
 .app .policy-link {
+  /* 24px tall before: legible, but a small thing to hit at the bottom of
+     a card your thumb is already scrolling past. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  /* Pushed to the bottom so the links sit on one line across a row,
+     whatever the description above them does. */
   margin-top: auto;
-  font-size: 0.9rem;
+  gap: 6px;
+  font-size: 0.88rem;
   font-weight: 540;
   color: var(--accent);
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .app .policy-link:hover { gap: 10px; }
@@ -726,7 +713,16 @@ footer.site a { color: var(--muted); }
 .foot-grid > div { min-width: 150px; }
 .foot h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin: 0 0 10px; }
 .foot ul { list-style: none; padding: 0; margin: 0; }
-.foot li { margin-bottom: 6px; }
+/* Footer lists are the densest links on the page — eleven app names in a
+   column. Making each one a 40px row costs a little height and makes the
+   column usable with a thumb instead of a cursor. */
+.foot li { margin-bottom: 0; }
+.foot li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding-right: 4px;
+}
 .foot a { color: var(--muted); text-decoration: none; }
 .foot a:hover { color: var(--text); text-decoration: underline; }
 .foot .fine { margin: 26px 0 0; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85rem; }
@@ -758,7 +754,10 @@ html.js .reveal.in {
   .mark svg { width: 26px; height: 26px; }
   .topbar-inner { padding: 11px var(--page-pad); gap: 8px; }
   .navlink { padding: 8px 9px; font-size: 0.9rem; }
-  .theme-toggle { width: 34px; height: 34px; }
+  /* Was 34px here, which is the one place a target got smaller on the
+     device where fingers are the only input. The icon inside stays 18px;
+     only the hit area grows. */
+  .theme-toggle { width: 44px; height: 44px; }
   .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
 }
 
@@ -909,7 +908,7 @@ html.js .reveal.in {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  height: 38px;
+  min-height: 44px;
   padding: 0 14px;
   /* Equal on both sides, so it sits evenly between Contact and the toggle. */
   margin: 0 14px;
@@ -1104,10 +1103,15 @@ html.js .reveal.in {
 .legal-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 20px;
+  /* The row gap closes up because each link now carries its own height. */
+  gap: 0 20px;
+  margin: -6px 0;
 }
 
 .legal-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--muted);
   font-size: 0.86rem;
   text-decoration: none;
