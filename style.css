@@ -1135,3 +1135,100 @@ html.js .reveal.in {
   font-size: 0.82em;
   letter-spacing: 0.02em;
 }
+
+/* ── 404 ──────────────────────────────────────────────────────────────────
+   GitHub Pages serves 404.html for any missing URL at any depth, so this is
+   the one page a visitor can reach by accident. It is built to get them back
+   out: the big number is decoration, the list of policies underneath is the
+   part that actually helps, because most misses here are a stale or mistyped
+   privacy-policy link coming out of an app.
+   ------------------------------------------------------------------------ */
+.nf-hero { padding-top: clamp(40px, 8vw, 72px); }
+
+.nf-code {
+  font-size: clamp(5.5rem, 22vw, 11rem);
+  line-height: 0.88;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 4px 0 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Decorative and aria-hidden; the real heading is .nf-title below it. */
+  user-select: none;
+}
+
+.nf-title {
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.nf-path {
+  margin: 18px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.nf-path code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  /* A long path must wrap rather than widen the page on a phone. */
+  overflow-wrap: anywhere;
+}
+
+.nf-hero .hero-actions { margin-top: 28px; }
+
+.nf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.nf-list-wide { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+.nf-list a {
+  display: flex;
+  align-items: center;
+  /* 48px, so every one of these is a comfortable tap target. */
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.nf-list a::after {
+  content: "→";
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.nf-list a:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+  transform: translateY(-1px);
+}
+
+.nf-list a:hover::after { transform: translateX(3px); color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-list a, .nf-list a::after { transition: none; }
+  .nf-list a:hover { transform: none; }
+  .nf-list a:hover::after { transform: none; }
+}
