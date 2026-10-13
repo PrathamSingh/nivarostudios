@@ -70,6 +70,32 @@ for (const page of pages) {
   const og = html.match(/property="og:image" content="([^"]+)"/);
   if (og && !og[1].startsWith('https://')) fail.push(`${page}: og:image is not absolute`);
 
+  /*
+   * Structured data has to parse. A JSON-LD block with a trailing comma is
+   * silently ignored by Google rather than reported, so the only way to find
+   * out it was broken is to notice the rich result never appeared.
+   */
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try {
+      JSON.parse(m[1]);
+    } catch (e) {
+      fail.push(`${page}: JSON-LD does not parse — ${e.message}`);
+    }
+  }
+
+  /*
+   * Every indexable page below the root carries a breadcrumb.
+   *
+   * The exemptions are not convenience. The homepage is the breadcrumb root
+   * and has nothing to point back to; 404.html is noindex; thank-you.html is
+   * Disallow'd in robots.txt, so Google never fetches it and structured data
+   * there would be markup nobody reads.
+   */
+  const noBreadcrumb = ['index.html', '404.html', 'thank-you.html'];
+  if (!noBreadcrumb.includes(page) && !/BreadcrumbList/.test(html)) {
+    fail.push(`${page}: missing BreadcrumbList structured data`);
+  }
+
   // Links that open a new tab need noopener, or the opened page can rewrite this one.
   for (const m of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
     if (!m[0].includes('noopener')) fail.push(`${page}: target="_blank" without rel="noopener"`);
